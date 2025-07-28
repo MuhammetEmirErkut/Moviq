@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testing"
+    namespace = "com.emirerkut.testing"
     compileSdk = 35
 
     defaultConfig {

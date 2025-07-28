@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.model"
+    namespace = "com.emirerkut.model"
     compileSdk = 35
 
     defaultConfig {

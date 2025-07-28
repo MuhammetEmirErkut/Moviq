@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.home"
+    namespace = "com.emirerkut.home"
     compileSdk = 35
 
     defaultConfig {
