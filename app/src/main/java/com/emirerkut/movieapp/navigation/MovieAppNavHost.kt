@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.emirerkut.movieapp.AppState
 import com.emirerkut.home.navigation.Home
+import com.emirerkut.home.navigation.homeScreen
 
 
 @Composable
@@ -18,6 +19,6 @@ fun MovieAppNavHost(
         startDestination = Home(),
         modifier = modifier
     ) {
-
+        homeScreen()
     }
 }
