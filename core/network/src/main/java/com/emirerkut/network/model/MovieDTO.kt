@@ -2,11 +2,11 @@ package com.emirerkut.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponseDTO(
+data class MovieDTO(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("original_title")
-    val original_title: String?,
+    val originalTitle: String?,
     @SerializedName("original_language")
-    val original_language: String?
+    val originalLanguage: String?
 )

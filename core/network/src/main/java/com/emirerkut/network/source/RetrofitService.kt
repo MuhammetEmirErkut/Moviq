@@ -1,6 +1,6 @@
 package com.emirerkut.network.source
 
-import com.emirerkut.network.model.MovieResponseDTO
+import com.emirerkut.network.model.MovieDTO
 import com.emirerkut.network.util.Constants.LANGUAGE
 import retrofit2.Response
 import retrofit2.http.GET
@@ -10,5 +10,5 @@ interface RetrofitService {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("language") language: String = LANGUAGE
-    ): Response<MovieResponseDTO>
+    ): Response<MovieDTO>
 }
