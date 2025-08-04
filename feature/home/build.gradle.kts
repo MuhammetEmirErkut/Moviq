@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -29,12 +31,22 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":core:domain"))
+    implementation(project(":core:common"))
+    implementation(project(":core:model"))
     // Coil
     implementation(libs.coil.compose)
 
     // Serialization
     implementation(libs.kotlin.serialization)
 
+    // Dagger
+    implementation(libs.dagger)
+    implementation(libs.hilt.android)
+    kapt(libs.dagger.compiler)
+    // Hilt
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
     // Compose dependencies
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
