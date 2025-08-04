@@ -4,8 +4,8 @@ import com.emirerkut.model.Movie
 import com.emirerkut.common.helper.DispatcherProvider
 import com.emirerkut.common.model.ErrorType
 import com.emirerkut.common.model.Failure
-import com.emirerkut.data.mapper.toMovie
-import com.emirerkut.network.model.MovieDTO
+import com.emirerkut.data.mapper.toMovieList
+import com.emirerkut.network.model.MovieResponseDTO
 import com.emirerkut.network.source.MovieRemoteDataSource
 import com.emirerkut.network.util.asRestApiCall
 import kotlinx.coroutines.flow.Flow
@@ -18,9 +18,9 @@ class MovieRepositoryImpl @Inject constructor(
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val dispatcherProvider: DispatcherProvider
 ): MovieRepository{
-    override fun getPopularMovies(language: String): Flow<Movie> =
+    override fun getPopularMovies(language: String): Flow<List<Movie>> =
         movieRemoteDataSource.getPopularMovies(language)
-            .asRestApiCall(MovieDTO::toMovie)
+            .asRestApiCall(MovieResponseDTO::toMovieList)
             .catch {
                 if (it is UnknownHostException) {
                     throw Failure(ErrorType.CONNECTION_ERROR)
