@@ -33,4 +33,10 @@ object NetworkModule {
             .addInterceptor(ApiKeyInterceptor())
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideRetrofitService(retrofit: Retrofit): com.emirerkut.network.source.RetrofitService {
+        return retrofit.create(com.emirerkut.network.source.RetrofitService::class.java)
+    }
 }
