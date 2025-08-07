@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Error</string>
+    <string name="try_again">Try Again!</string>
+    <string name="unknown_title">Unknown Title</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="unknown">Unknown</string>
+    <string name="language">Language</string>
+</resources>
