@@ -7,7 +7,8 @@ import com.emirerkut.network.model.MovieResponseDTO
 fun MovieDTO.toMovie() = Movie(
     id = id ?: -1,
     originalTitle = originalTitle,
-    originalLanguage = originalLanguage
+    originalLanguage = originalLanguage,
+    posterPath = posterPath
 )
 
 fun MovieResponseDTO.toMovieList(): List<Movie> {

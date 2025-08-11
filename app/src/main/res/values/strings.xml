@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieApp</string>
+    <string name="unexpected_error_occurred">An unexpected error occurred</string>
 </resources>
