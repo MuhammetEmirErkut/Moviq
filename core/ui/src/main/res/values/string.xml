@@ -6,4 +6,7 @@
     <string name="movie_poster">Movie Poster</string>
     <string name="unknown">Unknown</string>
     <string name="language">Language</string>
+    <string name="no_movies_found">No movies found</string>
+    <string name="try_again_to_load_movies">Try refreshing to load movies</string>
+    <string name="refresh">Refresh</string>
 </resources>
