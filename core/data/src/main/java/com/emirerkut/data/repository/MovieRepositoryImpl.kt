@@ -28,4 +28,15 @@ class MovieRepositoryImpl @Inject constructor(
             }
             .flowOn(dispatcherProvider.ioDispatcher)
 
+    override fun searchMovies(query: String): Flow<List<Movie>> {
+        return movieRemoteDataSource.searchMovies(query)
+            .asRestApiCall(MovieResponseDTO::toMovieList)
+            .catch {
+                if (it is UnknownHostException) {
+                    throw Failure(ErrorType.CONNECTION_ERROR)
+                } else throw it
+            }
+            .flowOn(dispatcherProvider.ioDispatcher)
+    }
+
 }
