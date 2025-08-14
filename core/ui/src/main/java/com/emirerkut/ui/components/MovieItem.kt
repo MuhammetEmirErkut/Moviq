@@ -24,7 +24,7 @@ import com.emirerkut.model.Movie
 import com.emirerkut.ui.R
 
 @Composable
-fun MovieItem(movie: Movie) {
+fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
     val dimens: Dimens = Dimens.default
     var isTitleVisible by remember { mutableStateOf(false) }
 
