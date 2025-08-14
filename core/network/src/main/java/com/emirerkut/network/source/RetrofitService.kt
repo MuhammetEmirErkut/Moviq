@@ -11,4 +11,9 @@ interface RetrofitService {
     suspend fun getPopularMovies(
         @Query("language") language: String = LANGUAGE
     ): Response<MovieResponseDTO>
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String
+    ): Response<MovieResponseDTO>
 }
