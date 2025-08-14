@@ -48,9 +48,16 @@ kotlin {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":feature:home"))
+    implementation(project(":feature:search"))
+    implementation(project(":core:ui"))
 
+    // Dagger
+    implementation(libs.dagger)
     implementation(libs.hilt.android)
+    kapt(libs.dagger.compiler)
+    // Hilt
     kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
