@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.emirerkut.movieapp.navigation.Destination
 import com.emirerkut.movieapp.navigation.Destination.DETAIL
 import com.emirerkut.movieapp.navigation.Destination.HOME
+import com.emirerkut.movieapp.navigation.Destination.SEARCH
 import kotlinx.coroutines.CoroutineScope
 
 
@@ -31,6 +32,7 @@ class AppState(val navController: NavHostController, val coroutineScope: Corouti
         @Composable get() = when (currentDestination?.route) {
             HOME.route -> Destination.HOME
             DETAIL.route -> Destination.DETAIL
+            SEARCH.route -> Destination.SEARCH
             else -> null
         }
 }
