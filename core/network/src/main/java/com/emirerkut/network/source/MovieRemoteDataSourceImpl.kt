@@ -13,4 +13,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     override fun getPopularMovies(language: String): Flow<Response<MovieResponseDTO>> = flow {
         emit(api.getPopularMovies(language = language))
     }
+
+    override fun searchMovies(query: String): Flow<Response<MovieResponseDTO>> = flow {
+        emit(api.searchMovies(query = query))
+    }
 }

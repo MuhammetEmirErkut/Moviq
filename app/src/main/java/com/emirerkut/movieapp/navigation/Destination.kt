@@ -6,6 +6,9 @@ enum class Destination(
     HOME(
         route = "home",
     ),
+    SEARCH(
+        route = "search",
+    ),
     DETAIL(
         route = "detail",
     )
