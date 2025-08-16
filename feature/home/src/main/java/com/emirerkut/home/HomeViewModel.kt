@@ -4,44 +4,54 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emirerkut.common.model.Failure
 import com.emirerkut.domain.usecase.GetPopularMoviesUseCase
+import com.emirerkut.domain.usecase.GetTopRatedMoviesUseCase
 import com.emirerkut.home.model.HomeState
+import com.emirerkut.home.model.HomeUiState
+import com.emirerkut.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
-import javax.inject.Inject
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.channels.Channel
-
+import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<HomeState>(HomeState.Loading)
-    val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(HomeUiState())
+    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+
     private val retryTrigger = Channel<Unit>()
 
     init {
         loadPopularMovies()
+        loadTopRatedMovies()
+    }
+
+    private fun <T> loadMovies(
+        useCase: (String) -> Flow<List<T>>,
+        updateState: (HomeUiState, HomeState) -> HomeUiState
+    ) {
+        useCase("en")
+            .onStart { _uiState.update { updateState(it, HomeState.Loading) } }
+            .onEach { movies -> _uiState.update { updateState(it, HomeState.Success(movies as List<Movie>)) } }
+            .catch { exception -> _uiState.update { updateState(it, HomeState.Error(Failure(exception))) } }
+            .launchIn(viewModelScope)
     }
 
     fun loadPopularMovies() {
-        getPopularMoviesUseCase.execute("en") // This will be change
-            .onStart {
-                _uiState.value = HomeState.Loading
-            }
-            .onEach { movies ->
-                    _uiState.value = HomeState.Success(movies)
-            }
-            .catch { exception ->
-                    _uiState.value = HomeState.Error(Failure(exception))
-            }
-            .launchIn(viewModelScope)
+        loadMovies(
+            useCase = getPopularMoviesUseCase::execute,
+            updateState = { current, state -> current.copy(popular = state) }
+        )
+    }
+
+    fun loadTopRatedMovies() {
+        loadMovies(
+            useCase = getTopRatedMoviesUseCase::execute,
+            updateState = { current, state -> current.copy(topRated = state) }
+        )
     }
 
     fun onEvent(event: HomeScreenEvent) {
@@ -52,8 +62,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
-    fun retry() {
-        loadPopularMovies()
-    }
+    fun retryLoadPopularMovies() = loadPopularMovies()
+    fun retryLoadTopRatedMovies() = loadTopRatedMovies()
 }
