@@ -34,6 +34,13 @@ fun HomeScreen(
             onRetry = { viewModel.retryLoadTopRatedMovies() },
             whenErrorOccured = whenErrorOccured
         )
+
+        MovieSection(
+            title = stringResource(R.string.upcoming_movies),
+            state = homeState.upcoming.toUiState(),
+            onRetry = { viewModel.retryLoadUpcomingMovies() },
+            whenErrorOccured = whenErrorOccured
+        )
     }
 }
 
