@@ -7,5 +7,6 @@ interface MovieRepository {
     fun getPopularMovies(language: String): Flow<List<Movie>>
     fun getTopRatedMovies(language: String): Flow<List<Movie>>
     fun getUpcomingMovies(language: String): Flow<List<Movie>>
+    fun getNowPlayingMovies(language: String): Flow<List<Movie>>
     fun searchMovies(query: String): Flow<List<Movie>>
 }
