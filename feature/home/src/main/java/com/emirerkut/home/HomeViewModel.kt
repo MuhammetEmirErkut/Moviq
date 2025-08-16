@@ -3,6 +3,7 @@ package com.emirerkut.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emirerkut.common.model.Failure
+import com.emirerkut.domain.usecase.GetNowPlayingMoviesUseCase
 import com.emirerkut.domain.usecase.GetPopularMoviesUseCase
 import com.emirerkut.domain.usecase.GetTopRatedMoviesUseCase
 import com.emirerkut.domain.usecase.GetUpcomingMoviesUseCase
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
-    private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase
+    private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
+    private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -30,6 +32,7 @@ class HomeViewModel @Inject constructor(
         loadPopularMovies()
         loadTopRatedMovies()
         loadUpcomingMovies()
+        loadNowPlayingMovies()
     }
 
     private fun <T> loadMovies(
@@ -64,6 +67,13 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    fun loadNowPlayingMovies() {
+        loadMovies(
+            useCase = getNowPlayingMoviesUseCase::execute,
+            updateState = { current, state -> current.copy(nowPlaying = state) }
+        )
+    }
+
     fun onEvent(event: HomeScreenEvent) {
         when (event) {
             is HomeScreenEvent.OnTryAgainClick -> {
@@ -75,4 +85,5 @@ class HomeViewModel @Inject constructor(
     fun retryLoadPopularMovies() = loadPopularMovies()
     fun retryLoadTopRatedMovies() = loadTopRatedMovies()
     fun retryLoadUpcomingMovies() = loadUpcomingMovies()
+    fun retryLoadNowPlayingMovies() = loadNowPlayingMovies()
 }
