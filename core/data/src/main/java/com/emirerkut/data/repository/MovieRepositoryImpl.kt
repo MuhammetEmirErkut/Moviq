@@ -28,6 +28,36 @@ class MovieRepositoryImpl @Inject constructor(
             }
             .flowOn(dispatcherProvider.ioDispatcher)
 
+    override fun getTopRatedMovies(language: String): Flow<List<Movie>> =
+        movieRemoteDataSource.getTopRatedMovies(language)
+            .asRestApiCall(MovieResponseDTO::toMovieList)
+            .catch {
+                if (it is UnknownHostException) {
+                    throw Failure(ErrorType.CONNECTION_ERROR)
+                } else throw it
+            }
+            .flowOn(dispatcherProvider.ioDispatcher)
+
+    override fun getUpcomingMovies(language: String): Flow<List<Movie>> =
+        movieRemoteDataSource.getUpcomingMovies(language)
+            .asRestApiCall(MovieResponseDTO::toMovieList)
+            .catch {
+                if (it is UnknownHostException) {
+                    throw Failure(ErrorType.CONNECTION_ERROR)
+                } else throw it
+            }
+            .flowOn(dispatcherProvider.ioDispatcher)
+
+    override fun getNowPlayingMovies(language: String): Flow<List<Movie>> =
+        movieRemoteDataSource.getNowPlayingMovies(language)
+            .asRestApiCall(MovieResponseDTO::toMovieList)
+            .catch{
+                if (it is UnknownHostException) {
+                    throw Failure(ErrorType.CONNECTION_ERROR)
+                } else throw it
+            }
+            .flowOn(dispatcherProvider.ioDispatcher)
+
     override fun searchMovies(query: String): Flow<List<Movie>> {
         return movieRemoteDataSource.searchMovies(query)
             .asRestApiCall(MovieResponseDTO::toMovieList)
