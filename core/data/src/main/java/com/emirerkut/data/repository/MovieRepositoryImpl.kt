@@ -4,7 +4,9 @@ import com.emirerkut.model.Movie
 import com.emirerkut.common.helper.DispatcherProvider
 import com.emirerkut.common.model.ErrorType
 import com.emirerkut.common.model.Failure
+import com.emirerkut.data.mapper.toMovie
 import com.emirerkut.data.mapper.toMovieList
+import com.emirerkut.network.model.MovieDTO
 import com.emirerkut.network.model.MovieResponseDTO
 import com.emirerkut.network.source.MovieRemoteDataSource
 import com.emirerkut.network.util.asRestApiCall
@@ -61,6 +63,17 @@ class MovieRepositoryImpl @Inject constructor(
     override fun searchMovies(query: String): Flow<List<Movie>> {
         return movieRemoteDataSource.searchMovies(query)
             .asRestApiCall(MovieResponseDTO::toMovieList)
+            .catch {
+                if (it is UnknownHostException) {
+                    throw Failure(ErrorType.CONNECTION_ERROR)
+                } else throw it
+            }
+            .flowOn(dispatcherProvider.ioDispatcher)
+    }
+
+    override fun getMovieDetail(movieId: Int): Flow<Movie> {
+        return movieRemoteDataSource.getMovieDetail(movieId)
+            .asRestApiCall(MovieDTO::toMovie)
             .catch {
                 if (it is UnknownHostException) {
                     throw Failure(ErrorType.CONNECTION_ERROR)

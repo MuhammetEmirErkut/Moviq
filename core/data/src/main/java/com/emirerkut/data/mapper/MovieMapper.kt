@@ -8,7 +8,8 @@ fun MovieDTO.toMovie() = Movie(
     id = id ?: -1,
     originalTitle = originalTitle,
     originalLanguage = originalLanguage,
-    posterPath = posterPath
+    posterPath = posterPath,
+    overview = overview
 )
 
 fun MovieResponseDTO.toMovieList(): List<Movie> {

@@ -1,9 +1,11 @@
 package com.emirerkut.network.source
 
+import com.emirerkut.network.model.MovieDTO
 import com.emirerkut.network.model.MovieResponseDTO
 import com.emirerkut.network.util.Constants.LANGUAGE
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitService {
@@ -31,5 +33,11 @@ interface RetrofitService {
     suspend fun searchMovies(
         @Query("query") query: String
     ): Response<MovieResponseDTO>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetail(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language: String = LANGUAGE
+    ): Response<MovieDTO>
 
 }
