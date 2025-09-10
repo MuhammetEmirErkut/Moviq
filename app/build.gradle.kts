@@ -47,8 +47,10 @@ kotlin {
 
 dependencies {
     implementation(project(":core:designsystem"))
+    implementation(project(":core:model"))
     implementation(project(":feature:home"))
     implementation(project(":feature:search"))
+    implementation(project(":feature:detail"))
     implementation(project(":core:ui"))
 
     // Dagger
