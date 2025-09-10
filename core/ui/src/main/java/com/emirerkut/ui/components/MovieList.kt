@@ -13,7 +13,8 @@ import com.emirerkut.model.Movie
 @Composable
 fun MovieList(
     movies: List<Movie>,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     val dimens: Dimens = Dimens.default
 
@@ -25,7 +26,10 @@ fun MovieList(
             horizontalArrangement = Arrangement.spacedBy(Dimens.default.genericS)
         ) {
             items(movies) { movie ->
-                MovieItem(movie = movie)
+                MovieItem(
+                    movie = movie,
+                    onMovieClick = onMovieClick
+                )
             }
         }
     }

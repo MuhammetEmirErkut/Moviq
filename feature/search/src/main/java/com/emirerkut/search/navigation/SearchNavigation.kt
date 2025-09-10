@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.emirerkut.model.Movie
 import com.emirerkut.search.SearchScreen
 import com.emirerkut.search.SearchViewModel
 import kotlinx.serialization.Serializable
@@ -19,22 +20,23 @@ fun NavController.navigateToSearch(
 
 fun NavGraphBuilder.searchScreen(
     whenErrorOccurred: suspend (Throwable, String?) -> Unit,
+    onMovieClick: (Movie) -> Unit = {},
+    navController: NavController
 ) {
-    composable<Search>() {
+    composable("search") {
         val viewModel: SearchViewModel = hiltViewModel()
         val searchUiState by viewModel.uiState.collectAsStateWithLifecycle()
         SearchScreen(
             searchState = searchUiState,
             viewModel = viewModel,
-            onEvent = TODO(),
-            whenErrorOccured = whenErrorOccurred
+            onEvent = viewModel::onEvent,
+            whenErrorOccured = whenErrorOccurred,
+            onMovieClick = onMovieClick
         )
     }
 }
 
 @Serializable
 data class Search(val name: String? = null) {
-    companion object {
-//        val route = Home::class
-    }
+    val route: String = "search"
 }

@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.emirerkut.model.Movie
 import com.emirerkut.search.model.SearchState
 import com.emirerkut.ui.components.ErrorScreen
 import com.emirerkut.ui.components.LoadingScreen
@@ -23,9 +24,10 @@ fun SearchScreen(
     viewModel: SearchViewModel = hiltViewModel(),
     onEvent: (SearchScreenEvent) -> Unit,
     whenErrorOccured: suspend (Throwable, String?) -> Unit = { _, _ -> },
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     val query by viewModel.query.collectAsState()
-    var active by remember { mutableStateOf(false) }
+    var active by remember { mutableStateOf(true) }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(query) {
@@ -41,18 +43,22 @@ fun SearchScreen(
         SearchBarComposable(
             query = query,
             onQueryChange = { newQuery -> viewModel.updateQuery(newQuery) },
-            active = active,
-            onActiveChange = { isActive -> active = isActive },
+            active = true,
+            onActiveChange = { /* keep always active */ active = true },
             onCloseClick = {
                 scope.launch {
                     viewModel.updateQuery("")
-                    active = false
+                    active = true
                     onEvent(SearchScreenEvent.OnIdle)
                 }
             }
         ) {
             if (searchState is SearchState.Success) {
-                MovieGridList(movies = searchState.movies) { }
+                MovieGridList(
+                    movies = searchState.movies,
+                    onRetry = { /* No retry needed for search results */ },
+                    onMovieClick = onMovieClick
+                )
             }
         }
 

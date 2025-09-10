@@ -9,4 +9,5 @@ interface MovieRepository {
     fun getUpcomingMovies(language: String): Flow<List<Movie>>
     fun getNowPlayingMovies(language: String): Flow<List<Movie>>
     fun searchMovies(query: String): Flow<List<Movie>>
+    fun getMovieDetail(movieId: Int): Flow<Movie>
 }

@@ -10,5 +10,7 @@ data class MovieDTO(
     @SerializedName("original_language")
     val originalLanguage: String?,
     @SerializedName("poster_path")
-    val posterPath: String?
+    val posterPath: String?,
+    @SerializedName("overview")
+    val overview: String?
 )

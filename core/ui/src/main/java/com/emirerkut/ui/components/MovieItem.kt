@@ -24,9 +24,12 @@ import com.emirerkut.model.Movie
 import com.emirerkut.ui.R
 
 @Composable
-fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
+fun MovieItem(
+    movie: Movie, 
+    modifier: Modifier = Modifier,
+    onMovieClick: (Movie) -> Unit = {}
+) {
     val dimens: Dimens = Dimens.default
-    var isTitleVisible by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -38,17 +41,12 @@ fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
             .width(width = dimens.cardWidthM)
             .height(height = dimens.cardHeightM)
             .clickable {
-                isTitleVisible = !isTitleVisible
+                onMovieClick(movie)
             }
     ) {
         MoviePoster(
             posterPath = movie.posterPath,
             modifier = Modifier
-        )
-        HoverTitleOverlay(
-            title = movie.originalTitle ?: stringResource(R.string.unknown_title),
-            isVisible = isTitleVisible,
-            modifier = Modifier.align(Alignment.TopStart)
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.emirerkut.network.source
 
+import com.emirerkut.network.model.MovieDTO
 import com.emirerkut.network.model.MovieResponseDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,5 +29,9 @@ class MovieRemoteDataSourceImpl @Inject constructor(
 
     override fun searchMovies(query: String): Flow<Response<MovieResponseDTO>> = flow {
         emit(api.searchMovies(query = query))
+    }
+
+    override fun getMovieDetail(movieId: Int): Flow<Response<MovieDTO>> = flow {
+        emit(api.getMovieDetail(movieId = movieId))
     }
 }

@@ -14,7 +14,8 @@ import com.emirerkut.model.Movie
 fun SectionWithMovieList(
     title: String,
     movies: List<Movie>,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     val dimens: Dimens = Dimens.default
     Column {
@@ -29,7 +30,8 @@ fun SectionWithMovieList(
 
         MovieList(
             movies = movies,
-            onRetry = onRetry
+            onRetry = onRetry,
+            onMovieClick = onMovieClick
         )
     }
 }

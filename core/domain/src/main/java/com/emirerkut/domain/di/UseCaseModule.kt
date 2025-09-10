@@ -1,6 +1,7 @@
 package com.emirerkut.domain.di
 
 import com.emirerkut.data.repository.MovieRepository
+import com.emirerkut.domain.usecase.GetMovieDetailUseCase
 import com.emirerkut.domain.usecase.GetNowPlayingMoviesUseCase
 import com.emirerkut.domain.usecase.GetPopularMoviesUseCase
 import com.emirerkut.domain.usecase.GetTopRatedMoviesUseCase
@@ -39,4 +40,9 @@ object UseCaseModule {
     @Singleton
     fun provideSearchMoviesUseCase(repository: MovieRepository) =
         SearchMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetMovieDetailUseCase(repository: MovieRepository) =
+        GetMovieDetailUseCase(repository)
 }
