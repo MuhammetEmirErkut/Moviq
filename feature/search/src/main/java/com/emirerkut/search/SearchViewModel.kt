@@ -21,6 +21,8 @@ class SearchViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<SearchState>(SearchState.Idle)
     val uiState: StateFlow<SearchState> = _uiState.asStateFlow()
 
+    private var lastSearchedQuery: String? = null
+
     fun updateQuery(newQuery: String) {
         _query.value = newQuery
     }
@@ -32,11 +34,19 @@ class SearchViewModel @Inject constructor(
             return
         }
 
+        // Avoid re-triggering the same search when we already have results for this query
+        val alreadyHasResultsForSameQuery =
+            lastSearchedQuery == currentQuery && _uiState.value is SearchState.Success
+        if (alreadyHasResultsForSameQuery) return
+
         viewModelScope.launch {
             searchMoviesUseCase.execute(currentQuery)
                 .onStart { _uiState.value = SearchState.Loading }
                 .catch { e -> _uiState.value = SearchState.Error(Failure(e)) }
-                .collect { movies -> _uiState.value = SearchState.Success(movies) }
+                .collect { movies ->
+                    lastSearchedQuery = currentQuery
+                    _uiState.value = SearchState.Success(movies)
+                }
         }
     }
 

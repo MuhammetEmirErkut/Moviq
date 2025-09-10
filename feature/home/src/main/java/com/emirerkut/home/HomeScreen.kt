@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.emirerkut.home.model.HomeUiState
 import com.emirerkut.home.model.toUiState
+import com.emirerkut.model.Movie
 import com.emirerkut.ui.components.MovieSection
 
 @Composable
@@ -17,7 +18,8 @@ fun HomeScreen(
     homeState: HomeUiState,
     viewModel: HomeViewModel = hiltViewModel(),
     onEvent: (HomeScreenEvent) -> Unit,
-    whenErrorOccured: suspend (Throwable, String?) -> Unit
+    whenErrorOccured: suspend (Throwable, String?) -> Unit,
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier
@@ -28,7 +30,8 @@ fun HomeScreen(
                 title = stringResource(R.string.popular_movies),
                 state = homeState.popular.toUiState(),
                 onRetry = { viewModel.retryLoadPopularMovies() },
-                whenErrorOccured = whenErrorOccured
+                whenErrorOccured = whenErrorOccured,
+                onMovieClick = onMovieClick
             )
         }
         item {
@@ -37,7 +40,8 @@ fun HomeScreen(
                 title = stringResource(R.string.top_rated_movies),
                 state = homeState.topRated.toUiState(),
                 onRetry = { viewModel.retryLoadTopRatedMovies() },
-                whenErrorOccured = whenErrorOccured
+                whenErrorOccured = whenErrorOccured,
+                onMovieClick = onMovieClick
             )
         }
         item {
@@ -45,7 +49,8 @@ fun HomeScreen(
                 title = stringResource(R.string.upcoming_movies),
                 state = homeState.upcoming.toUiState(),
                 onRetry = { viewModel.retryLoadUpcomingMovies() },
-                whenErrorOccured = whenErrorOccured
+                whenErrorOccured = whenErrorOccured,
+                onMovieClick = onMovieClick
             )
         }
         item {
@@ -53,7 +58,8 @@ fun HomeScreen(
                 title = stringResource(R.string.now_playing_movies),
                 state = homeState.nowPlaying.toUiState(),
                 onRetry = { viewModel.retryLoadNowPlayingMovies() },
-                whenErrorOccured = whenErrorOccured
+                whenErrorOccured = whenErrorOccured,
+                onMovieClick = onMovieClick
             )
         }
     }

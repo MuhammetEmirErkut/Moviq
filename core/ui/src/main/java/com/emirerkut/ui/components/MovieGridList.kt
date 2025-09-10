@@ -12,7 +12,8 @@ import com.emirerkut.model.Movie
 @Composable
 fun MovieGridList(
     movies: List<Movie>,
-    onRetry: () -> Unit
+      onRetry: () -> Unit,
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     val dimens: Dimens = Dimens.default
 
@@ -37,7 +38,8 @@ fun MovieGridList(
                     chunk.forEach { movie ->
                         MovieItem(
                             movie = movie,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            onMovieClick = onMovieClick
                         )
                     }
 

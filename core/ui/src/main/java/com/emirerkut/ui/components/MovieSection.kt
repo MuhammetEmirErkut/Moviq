@@ -10,7 +10,8 @@ fun <T> MovieSection(
     title: String,
     state: MovieSectionUiState<T>,
     onRetry: () -> Unit,
-    whenErrorOccured: suspend (Throwable, String?) -> Unit
+    whenErrorOccured: suspend (Throwable, String?) -> Unit,
+    onMovieClick: (Movie) -> Unit = {}
 ) {
     when {
         state.isLoading -> LoadingScreen()
@@ -22,7 +23,8 @@ fun <T> MovieSection(
         else -> SectionWithMovieList(
             title = title,
             movies = state.movies as List<Movie>,
-            onRetry = onRetry
+            onRetry = onRetry,
+            onMovieClick = onMovieClick
         )
     }
 }
