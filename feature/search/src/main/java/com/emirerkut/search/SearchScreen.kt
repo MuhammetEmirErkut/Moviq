@@ -44,14 +44,14 @@ fun SearchScreen(
             query = query,
             onQueryChange = { newQuery -> viewModel.updateQuery(newQuery) },
             active = true,
-            onActiveChange = { /* keep always active */ active = true },
+            onActiveChange = { active = true },
             onCloseClick = {
                 scope.launch {
                     viewModel.updateQuery("")
                     active = true
                     onEvent(SearchScreenEvent.OnIdle)
                 }
-            }
+            },
         ) {
             if (searchState is SearchState.Success) {
                 MovieGridList(
