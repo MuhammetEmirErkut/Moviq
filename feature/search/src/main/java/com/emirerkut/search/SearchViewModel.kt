@@ -55,6 +55,7 @@ class SearchViewModel @Inject constructor(
             SearchScreenEvent.OnSearchClick -> searchMovies()
             SearchScreenEvent.OnTryAgainClick -> searchMovies()
             SearchScreenEvent.OnIdle -> _uiState.value = SearchState.Idle
+            SearchScreenEvent.OnLoading -> _uiState.value = SearchState.Loading
         }
     }
 }
