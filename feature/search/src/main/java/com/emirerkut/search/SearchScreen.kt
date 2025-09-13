@@ -55,11 +55,12 @@ fun SearchScreen(
             },
         ) {
             when (searchState) {
-                is SearchState.Success -> MovieGridList(
-                    movies = searchState.movies,
-                    onRetry = { /* No retry needed */ },
-                    onMovieClick = onMovieClick
-                )
+                is SearchState.Success ->
+                    MovieGridList(
+                        movies = searchState.movies,
+                        onRetry = { /* No retry needed */ },
+                        onMovieClick = onMovieClick
+                    )
                 is SearchState.Loading -> LoadingScreen()
                 else -> Unit
             }
