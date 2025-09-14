@@ -34,6 +34,7 @@ fun SearchScreen(
         if (query.isBlank()) {
             onEvent(SearchScreenEvent.OnIdle)
         } else {
+            onEvent(SearchScreenEvent.OnLoading)
             delay(1000)
             onEvent(SearchScreenEvent.OnSearchClick)
         }
@@ -44,21 +45,24 @@ fun SearchScreen(
             query = query,
             onQueryChange = { newQuery -> viewModel.updateQuery(newQuery) },
             active = true,
-            onActiveChange = { /* keep always active */ active = true },
+            onActiveChange = { active = true },
             onCloseClick = {
                 scope.launch {
                     viewModel.updateQuery("")
                     active = true
                     onEvent(SearchScreenEvent.OnIdle)
                 }
-            }
+            },
         ) {
-            if (searchState is SearchState.Success) {
-                MovieGridList(
-                    movies = searchState.movies,
-                    onRetry = { /* No retry needed for search results */ },
-                    onMovieClick = onMovieClick
-                )
+            when (searchState) {
+                is SearchState.Success ->
+                    MovieGridList(
+                        movies = searchState.movies,
+                        onRetry = { /* No retry needed */ },
+                        onMovieClick = onMovieClick
+                    )
+                is SearchState.Loading -> LoadingScreen()
+                else -> Unit
             }
         }
 
@@ -68,7 +72,7 @@ fun SearchScreen(
         ) { state ->
             when (state) {
                 is SearchState.Idle -> Unit
-                is SearchState.Loading -> LoadingScreen()
+                is SearchState.Loading -> Unit
                 is SearchState.Success -> Unit
                 is SearchState.Error -> ErrorScreen(
                     failure = state.failure,

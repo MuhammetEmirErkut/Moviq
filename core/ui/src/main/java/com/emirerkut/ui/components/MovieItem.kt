@@ -19,16 +19,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import com.emirerkut.designsystem.theme.Dimens
 import com.emirerkut.model.Movie
 import com.emirerkut.ui.R
 
 @Composable
 fun MovieItem(
-    movie: Movie, 
+    movie: Movie,
     modifier: Modifier = Modifier,
-    onMovieClick: (Movie) -> Unit = {}
-) {
+    onMovieClick: (Movie) -> Unit = {},
+    width: Dp = Dimens.default.cardWidthM,
+    height: Dp = Dimens.default.cardHeightM,
+    ) {
     val dimens: Dimens = Dimens.default
 
     Box(
@@ -38,8 +41,8 @@ fun MovieItem(
                 shape = MaterialTheme.shapes.medium
             )
             .clip(MaterialTheme.shapes.large)
-            .width(width = dimens.cardWidthM)
-            .height(height = dimens.cardHeightM)
+            .width(width = width)
+            .height(height = height)
             .clickable {
                 onMovieClick(movie)
             }

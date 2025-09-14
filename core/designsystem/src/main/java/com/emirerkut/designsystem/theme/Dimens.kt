@@ -4,6 +4,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 data class Dimens(
+    val cardWidthL: Dp,
+    val cardHeightL: Dp,
     val cardWidthM: Dp,
     val cardHeightM: Dp,
     val cardWidthS: Dp,
@@ -17,6 +19,8 @@ data class Dimens(
 ) {
     companion object {
         val default = Dimens(
+            cardWidthL = 175.dp,
+            cardHeightL = 2252.dp,
             cardWidthM = 150.dp,
             cardHeightM = 200.dp,
             cardWidthS = 100.dp,
