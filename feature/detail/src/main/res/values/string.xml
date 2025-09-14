@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unknown_title">Unknown Title</string>
+    <string name="release_year">Release Year</string>
+    <string name="duration">Duration</string>
+    <string name="duration_minutes">%d minutes</string>
+    <string name="language">Language</string>
+    <string name="subtitle_languages">Spoken Languages</string>
+    <string name="genres">Genres</string>
+    <string name="cast">Cast</string>
+    <string name="imdb_rating">IMDB Rating</string>
+    <string name="rating_out_of_10">%s/10</string>
+    <string name="vote_count">%d votes</string>
+    <string name="unknown">Unknown</string>
+    <string name="no_data_available">No data available</string>
+</resources>
