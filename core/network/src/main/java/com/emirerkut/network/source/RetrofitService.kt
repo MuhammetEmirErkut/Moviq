@@ -37,7 +37,8 @@ interface RetrofitService {
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
         @Path("movie_id") movieId: Int,
-        @Query("language") language: String = LANGUAGE
+        @Query("language") language: String = LANGUAGE,
+        @Query("append_to_response") appendToResponse: String = "credits"
     ): Response<MovieDTO>
 
 }

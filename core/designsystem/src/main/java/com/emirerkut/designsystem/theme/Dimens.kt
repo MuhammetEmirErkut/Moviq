@@ -21,7 +21,7 @@ data class Dimens(
     companion object {
         val default = Dimens(
             cardWidthL = 175.dp,
-            cardHeightL = 2252.dp,
+            cardHeightL = 225.dp,
             cardWidthM = 150.dp,
             cardHeightM = 200.dp,
             cardWidthS = 100.dp,
