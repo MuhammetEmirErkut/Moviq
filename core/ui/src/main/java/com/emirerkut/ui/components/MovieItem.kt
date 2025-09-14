@@ -17,7 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import com.emirerkut.designsystem.theme.Dimens
@@ -31,11 +33,15 @@ fun MovieItem(
     onMovieClick: (Movie) -> Unit = {},
     width: Dp = Dimens.default.cardWidthM,
     height: Dp = Dimens.default.cardHeightM,
+    scale: Float = 1f,
+    alpha: Float = 1f
     ) {
     val dimens: Dimens = Dimens.default
 
     Box(
-        modifier = Modifier
+        modifier = modifier
+            .scale(scale)
+            .alpha(alpha)
             .background(
                 color = MaterialTheme.colorScheme.surface,
                 shape = MaterialTheme.shapes.medium
