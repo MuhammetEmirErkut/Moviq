@@ -59,35 +59,24 @@ fun MovieList(
                 
                 val isFirstItem = index == 0
                 val isLastItem = index == movies.size - 1
-                val isEdgeItem = isFirstItem || isLastItem
                 
-                val targetScale = if (isEdgeItem) {
-                    max(0.9f, min(1f, if (distanceFromCenter < maxDistance) {
-                        1f - (distanceFromCenter / maxDistance) * 0.1f
-                    } else {
-                        0.9f
-                    }))
+                val adjustedDistance = if (isFirstItem || isLastItem) {
+                    distanceFromCenter * 0.3f
                 } else {
-                    max(0.85f, min(1f, if (distanceFromCenter < maxDistance) {
-                        1f - (distanceFromCenter / maxDistance) * 0.15f
-                    } else {
-                        0.85f
-                    }))
+                    distanceFromCenter
                 }
                 
-                val targetAlpha = if (isEdgeItem) {
-                    max(0.8f, min(1f, if (distanceFromCenter < maxDistance) {
-                        1f - (distanceFromCenter / maxDistance) * 0.2f
-                    } else {
-                        0.8f
-                    }))
+                val targetScale = max(0.85f, min(1f, if (adjustedDistance < maxDistance) {
+                    1f - (adjustedDistance / maxDistance) * 0.15f
                 } else {
-                    max(0.6f, min(1f, if (distanceFromCenter < maxDistance) {
-                        1f - (distanceFromCenter / maxDistance) * 0.4f
-                    } else {
-                        0.6f
-                    }))
-                }
+                    0.85f
+                }))
+                
+                val targetAlpha = max(0.6f, min(1f, if (adjustedDistance < maxDistance) {
+                    1f - (adjustedDistance / maxDistance) * 0.4f
+                } else {
+                    0.6f
+                }))
                 
                 val animatedScale by animateFloatAsState(
                     targetValue = targetScale,
