@@ -28,16 +28,19 @@ fun ErrorScreen(
     whenErrorOccured: suspend (Throwable, String?) -> Unit,
     failure: Failure,
     onTryAgainClick: () -> Unit,
+    showSnackBar: Boolean = true
 ) {
     val context = LocalContext.current
     val errorDescription = stringResource(id = R.string.error)
     val dimens: Dimens = Dimens.default
 
-    LaunchedEffect(key1 = true) {
-        whenErrorOccured(
-            failure,
-            failure.errorType.toLocalizedMessage(context)
-        )
+    LaunchedEffect(key1 = failure) {
+        if (showSnackBar) {
+            whenErrorOccured(
+                failure,
+                failure.errorType.toLocalizedMessage(context)
+            )
+        }
     }
 
     Column(

@@ -18,7 +18,8 @@ fun <T> MovieSection(
         state.error != null -> ErrorScreen(
             whenErrorOccured = whenErrorOccured,
             failure = state.error as Failure,
-            onTryAgainClick = onRetry
+            onTryAgainClick = onRetry,
+            showSnackBar = false
         )
         else -> SectionWithMovieList(
             title = title,
