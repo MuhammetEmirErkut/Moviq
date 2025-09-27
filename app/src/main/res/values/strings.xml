@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MovieApp</string>
+    <string name="unexpected_error_occurred">An unexpected error occurred</string>
+    <string name="overview">Overview</string>
+    <string name="no_movie_data">No movie data available</string>
+    <string name="unknown_title">Unknown Title</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
 </resources>

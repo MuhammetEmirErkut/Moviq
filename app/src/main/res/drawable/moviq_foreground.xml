@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+  <group android:scaleX="1.01"
+      android:scaleY="1.01"
+      android:translateX="-0.6"
+      android:translateY="-0.6">
+      
+      <!-- Background circle -->
+      <path
+          android:fillColor="#030213"
+          android:pathData="M115,60C115,90.376 90.376,115 60,115C29.624,115 5,90.376 5,60C5,29.624 29.624,5 60,5C90.376,5 115,29.624 115,60Z"/>
+      
+      <!-- Q letter main body -->
+      <path
+          android:strokeColor="#FFFFFF"
+          android:strokeWidth="8"
+          android:strokeLineCap="round"
+          android:fillColor="@android:color/transparent"
+          android:pathData="M35,60C35,46.193 46.193,35 60,35C73.807,35 85,46.193 85,60C85,73.807 73.807,85 60,85C52.5,85 45.8,81.2 41.8,75.5"/>
+      
+      <!-- Q tail -->
+      <path
+          android:strokeColor="#FFFFFF"
+          android:strokeWidth="8"
+          android:strokeLineCap="round"
+          android:pathData="M70,70L82,82"/>
+      
+      <!-- Center accent dot -->
+      <path
+          android:fillColor="#FFFFFF"
+          android:pathData="M64,60C64,62.209 62.209,64 60,64C57.791,64 56,62.209 56,60C56,57.791 57.791,56 60,56C62.209,56 64,57.791 64,60Z"/>
+  </group>
+</vector>

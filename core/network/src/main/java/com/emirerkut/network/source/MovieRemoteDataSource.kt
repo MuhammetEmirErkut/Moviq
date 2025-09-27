@@ -1,0 +1,15 @@
+package com.emirerkut.network.source
+
+import com.emirerkut.network.model.MovieDTO
+import com.emirerkut.network.model.MovieResponseDTO
+import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
+
+interface MovieRemoteDataSource {
+    fun getPopularMovies(language: String): Flow<Response<MovieResponseDTO>>
+    fun getTopRatedMovies(language: String): Flow<Response<MovieResponseDTO>>
+    fun getUpcomingMovies(language: String): Flow<Response<MovieResponseDTO>>
+    fun getNowPlayingMovies(language: String): Flow<Response<MovieResponseDTO>>
+    fun searchMovies(query: String): Flow<Response<MovieResponseDTO>>
+    fun getMovieDetail(movieId: Int): Flow<Response<MovieDTO>>
+}

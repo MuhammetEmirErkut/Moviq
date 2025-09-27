@@ -1,0 +1,48 @@
+package com.emirerkut.domain.di
+
+import com.emirerkut.data.repository.MovieRepository
+import com.emirerkut.domain.usecase.GetMovieDetailUseCase
+import com.emirerkut.domain.usecase.GetNowPlayingMoviesUseCase
+import com.emirerkut.domain.usecase.GetPopularMoviesUseCase
+import com.emirerkut.domain.usecase.GetTopRatedMoviesUseCase
+import com.emirerkut.domain.usecase.GetUpcomingMoviesUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import com.emirerkut.domain.usecase.SearchMoviesUseCase
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object UseCaseModule {
+    @Provides
+    @Singleton
+    fun provideGetPopularMoviesUseCase(repository: MovieRepository) =
+        GetPopularMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetTopRatedMoviesUseCase(repository: MovieRepository) =
+        GetTopRatedMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetUpcomingMoviesUseCase(repository: MovieRepository) =
+        GetUpcomingMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetNowPlayingMoviesUseCase(repository: MovieRepository) =
+        GetNowPlayingMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSearchMoviesUseCase(repository: MovieRepository) =
+        SearchMoviesUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetMovieDetailUseCase(repository: MovieRepository) =
+        GetMovieDetailUseCase(repository)
+}

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -31,7 +33,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -46,10 +47,19 @@ kotlin {
 
 dependencies {
     implementation(project(":core:designsystem"))
-
+    implementation(project(":core:model"))
     implementation(project(":feature:home"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:detail"))
+    implementation(project(":core:ui"))
 
+    // Dagger
+    implementation(libs.dagger)
     implementation(libs.hilt.android)
+    kapt(libs.dagger.compiler)
+    // Hilt
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
