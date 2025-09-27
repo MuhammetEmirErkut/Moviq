@@ -1,7 +1,7 @@
 # 🎬 Moviq - Movie Discovery App
 
 <div align="center">
-  <img src="app/src/main/moviq-playstore.png" alt="Moviq Logo" width="200" height="200"/>
+<img width="192" height="192" alt="moviq_round" src="https://github.com/user-attachments/assets/08fa4203-a612-4403-b43b-03bb182c2a56" />
   
   **A modern Android movie discovery application built with Jetpack Compose**
   
@@ -67,38 +67,41 @@ MovieApp/
 
 ### 🎬 Featured Animations
 
-<!-- Add your animation GIFs here -->
 <div align="center">
   
-**Home Screen Animations**
-<!-- Add GIF: home-screen-animation.gif -->
-![Home Screen Animation](docs/animations/home-screen-animation.gif)
+**Movie List Animations**
 
-**Search Experience**
+![Home Screen Animation](https://github.com/user-attachments/assets/368820a0-e23e-4f4d-9148-6c39bbacc15c)
+
+**Search List Animation**
 <!-- Add GIF: search-animation.gif -->
-![Search Animation](docs/animations/search-animation.gif)
+![Search Animation](https://github.com/user-attachments/assets/5a89f6c2-fe2f-474a-86da-cdc63703cb24)
 
-**Movie Detail Transitions**
-<!-- Add GIF: detail-transition.gif -->
-![Detail Transition](docs/animations/detail-transition.gif)
-
-**Loading States**
-<!-- Add GIF: loading-animations.gif -->
-![Loading Animations](docs/animations/loading-animations.gif)
 
 </div>
 
 ### 📱 Screenshots
 
-<!-- Add your app screenshots here -->
 <div align="center">
-  
-**Main Screens**
-<!-- Add screenshots -->
-![Home Screen](docs/screenshots/home-screen.png)
-![Search Screen](docs/screenshots/search-screen.png)
-![Movie Detail](docs/screenshots/movie-detail.png)
-![Profile Screen](docs/screenshots/profile-screen.png)
+
+<table>
+  <tr>
+    <td align="center"><b>Home Screen</b></td>
+    <td align="center"><b>Search Screen</b></td>
+    <td align="center"><b>Movie Detail</b></td>
+  </tr>
+  <tr>
+    <td>
+      <img width="270" height="600" alt="home-screen" src="https://github.com/user-attachments/assets/8dbfcbc7-cb76-4927-98a3-6864e944275e" />
+    </td>
+    <td>
+      <img width="270" height="600" alt="search-screen" src="https://github.com/user-attachments/assets/e4d26f30-40fd-4023-b1c4-1bb8dc11664f" />
+    </td>
+    <td>
+      <img width="270" height="600" alt="movie-detail" src="https://github.com/user-attachments/assets/5fdf45d6-e543-419c-a30d-176f16b82808" />
+    </td>
+  </tr>
+</table>
 
 </div>
 
@@ -153,23 +156,6 @@ MovieApp/
 
 ---
 
-## 🧪 Testing
-
-The project includes comprehensive testing at multiple levels:
-
-- **Unit Tests**: Domain logic and business rules
-- **Integration Tests**: Data layer and repository implementations
-- **UI Tests**: User interface and user interactions
-- **End-to-End Tests**: Complete user workflows
-
-Run tests with:
-```bash
-./gradlew test
-./gradlew connectedAndroidTest
-```
-
----
-
 ## 📈 Performance
 
 - **Fast Startup**: Optimized app launch time
@@ -181,8 +167,6 @@ Run tests with:
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
 ### Development Setup
 1. Fork the repository
 2. Create a feature branch
@@ -192,29 +176,9 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Team
-
-- **Lead Developer**: [Your Name]
-- **UI/UX Designer**: [Designer Name]
-- **Backend Developer**: [Backend Developer Name]
-
----
-
 ## 📞 Contact
 
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile]
-- **GitHub**: [Your GitHub Profile]
+- **Email**: muhammetemir.erkut@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/muhammetemir-erkut/
 
----
 
-<div align="center">
-  <p>Made with ❤️ by the Moviq Team</p>
-  <p>© 2024 Moviq. All rights reserved.</p>
-</div>
