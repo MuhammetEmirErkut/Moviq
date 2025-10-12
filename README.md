@@ -120,8 +120,6 @@ MovieApp/
 ### Libraries & Tools
 - **Networking**: Retrofit + OkHttp
 - **Image Loading**: Coil
-- **Database**: Room (if applicable)
-- **Testing**: JUnit, Mockito, Espresso
 - **Build System**: Gradle with Kotlin DSL
 
 ---
