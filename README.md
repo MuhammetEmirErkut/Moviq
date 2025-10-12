@@ -137,7 +137,7 @@ MovieApp/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/MovieApp.git
+   git clone https://github.com/MuhammetEmirErkut/Moviq.git
    cd MovieApp
    ```
 
